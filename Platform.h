@@ -8,6 +8,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "Tile.h"
+#include "CollisionBox.h"
 using namespace std;
 using namespace sf;
 class Platform {
@@ -21,6 +22,7 @@ public:
     void draw(RenderWindow& window);
 private:
     vector<Tile> tiles;
+    CollisionBox platformCollisionBox;
 };
 
 

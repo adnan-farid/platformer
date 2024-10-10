@@ -11,10 +11,12 @@ int main() {
     Background backgroundLayer1("../assets/background/background_layer_1.png", window);
     Background backgroundLayer2("../assets/background/background_layer_2.png", window);
     Background backgroundLayer3("../assets/background/background_layer_3.png", window);
-    Platform platform1(5, "grass_stone", Vector2f(300,300), window, Vector2f(2.0f, 2.0f));
-    vector<int> wait = {0,6};
+    Platform platform1(3, "grass_stone", Vector2f(300,300), window, Vector2f(2.0f, 2.0f));
+    //row and number of frames for corresponding animations
+    vector<int> idle = {0,6};
     vector<int> run = {2,8};
-    Player player("../assets/character/char_blue.png", 300, 300, Vector2f(2.0f, 2.0f), 0.1f, 56,56, run, {}, wait);
+    vector<int> jump = {3, 8};
+    Player player("../assets/character/char_blue.png", Vector2f(300, 300), Vector2f(3.0f, 3.0f), 0.1f, 56,56, run, jump, idle);
     while (window.isOpen()) {
         Event event;
         float deltaTime = clock.restart().asSeconds();

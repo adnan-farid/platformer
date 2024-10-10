@@ -3,7 +3,9 @@
 //
 #include "Tile.h"
 #include "Platform.h"
-Platform::Platform(int tileCt, const string &platformType, Vector2f pos, RenderWindow& window, Vector2f scale) {
+
+Platform::Platform(int tileCt, const string &platformType, Vector2f pos, RenderWindow& window, Vector2f scale)
+    : platformCollisionBox(Vector2f(tileCt * 24 * scale.x, 24 * scale.y), pos)  {
     Vector2f currPos = pos;
     for (int i = 0; i < tileCt; i++) {
         if (i == 0) {
@@ -18,10 +20,16 @@ Platform::Platform(int tileCt, const string &platformType, Vector2f pos, RenderW
         }
         currPos.x += 24 * scale.x;
     }
+    float platformWidth = tileCt * 24 * scale.x;
+    float platformHeight = 24 * scale.y;
+    platformCollisionBox = CollisionBox(Vector2f(platformWidth, platformHeight), pos);
+
 }
 void Platform::draw(RenderWindow &window) {
     for (auto& tile : tiles) {
         tile.draw(window);
     }
+    platformCollisionBox.debugDraw(window);
+
 }
 

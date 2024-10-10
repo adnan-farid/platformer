@@ -33,3 +33,4 @@ Tile::Tile(const string& tileType, Vector2f pos, const RenderWindow& window, Vec
 void Tile::draw(RenderWindow &window) {
     window.draw(tileSprite);
 }
+
