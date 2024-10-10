@@ -24,7 +24,9 @@ add_executable(PlatformerGameDev main.cpp Background.cpp
         Platform.cpp
         Platform.h
         Tile.cpp
-        Tile.h)
+        Tile.h
+        Player.cpp
+        Player.h)
 
 # Include SFML's include directories explicitly for CLion's code analysis
 target_include_directories(PlatformerGameDev PRIVATE ${SFML_SOURCE_DIR}/include)
