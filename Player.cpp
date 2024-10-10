@@ -5,25 +5,35 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(const string &filename, int x, int y, Vector2f scale, float animationSpeed, int numFrames, int frameHeight, int frameWidth)
-    : animationSpeed(animationSpeed), frameHeight(frameHeight), frameWidth(frameWidth), numFrames(numFrames) {
+Player::Player(const string &filename, int x, int y, Vector2f scale, float animationSpeed, int frameHeight, int frameWidth, vector<int> run, vector<int> jump, vector<int> wait)
+    : animationSpeed(animationSpeed), frameHeight(frameHeight), frameWidth(frameWidth) {
     if (!playerTexture.loadFromFile(filename)) {
         playerTexture.loadFromFile("assets/character/char_blue.png");
     }
     playerSprite.setPosition(x, y);
     playerSprite.setTexture(playerTexture);
     playerSprite.setScale(scale.x, scale.y);
-}   int currFrame = 0;
-
-void Player::draw(RenderWindow &window, float deltaTime, int runRow, int waitRow, int jumpRow) {
-    drawWaiting(window, deltaTime, waitRow);
+    //anim properties
+    if (run.size() > 0) { runRow = run[0]; runFrames = run[1]; }
+    if (wait.size() > 0) { waitRow = wait[0]; waitFrames = wait[1]; }
+    if (jump.size() > 0) { jumpRow = jump[0]; jumpFrames = jump[1]; }
 }
 
-void Player::drawJumping(RenderWindow &window, float deltaTime, int row) {
+int currFrame = 0;
+
+void Player::draw(RenderWindow &window, float deltaTime) {
+    if (!isAnyKeyPressed()) {
+        drawWaiting(window, deltaTime, waitRow, waitFrames);
+    } else {
+        drawRunning(window, deltaTime, runRow, runFrames);
+    }
+}
+
+void Player::drawJumping(RenderWindow &window, float deltaTime, int row, int numFrames) {
     return;
 }
 
-void Player::drawRunning(RenderWindow &window, float deltaTime, int row) {
+void Player::drawRunning(RenderWindow &window, float deltaTime, int row, int numFrames) {
     playerSheetStartY = row * frameHeight;
     timeSinceLastFrame += deltaTime;
 
@@ -40,7 +50,7 @@ void Player::drawRunning(RenderWindow &window, float deltaTime, int row) {
     window.draw(playerSprite);
 }
 
-void Player::drawWaiting(RenderWindow &window, float deltaTime, int row) {
+void Player::drawWaiting(RenderWindow &window, float deltaTime, int row, int numFrames) {
     playerSheetStartY = row * frameHeight;
     timeSinceLastFrame += deltaTime;
 

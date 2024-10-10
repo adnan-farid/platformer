@@ -20,14 +20,12 @@ public:
     //numFrames: number of frames in the row of your sprite sheet
     //frame height: height in px of each frame
     //frame width: width in px of each frame
-    Player(const string &filename, int x, int y, Vector2f scale, float animationSpeed,
-        int numFrames, int frameHeight, int frameWidth);
-void draw(RenderWindow &window, float deltaTime,int runRow=INT_MAX, int waitRow = INT_MAX, int jumpRow = INT_MAX);
+    Player(const string &filename, int x, int y, Vector2f scale, float animationSpeed, int frameHeight, int frameWidth, vector<int> run = {}, vector<int> jump = {}, vector<int> wait = {});
+void draw(RenderWindow &window, float deltaTime);
 private:
     Texture playerTexture;
     Sprite playerSprite;
     //anim properties
-    int numFrames;
     float animationSpeed = 0.1f;
     float timeSinceLastFrame = 0.0f;
     Clock clock;
@@ -35,9 +33,15 @@ private:
     int frameWidth;
     int playerSheetStartY;
     float deltaTime;
-    void drawRunning(RenderWindow& window, float deltaTime, int row);
-    void drawJumping(RenderWindow& window, float deltaTime, int row);
-    void drawWaiting(RenderWindow& window, float deltaTime ,int row);
+    int runRow;
+    int runFrames;
+    int jumpRow;
+    int jumpFrames;
+    int waitRow;
+    int waitFrames;
+    void drawRunning(RenderWindow& window, float deltaTime, int row, int numFrames);
+    void drawJumping(RenderWindow& window, float deltaTime, int row, int numFrames);
+    void drawWaiting(RenderWindow& window, float deltaTime ,int row, int numFrames);
     bool isAnyKeyPressed();
 };
 #endif //PLAYER_H
