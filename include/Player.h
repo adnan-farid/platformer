@@ -23,6 +23,9 @@ public:
     //run, jump, wait: vector that contains row of animation [0] and number of frames in that animation [1]
     Player(const string &filename, Vector2f pos, Vector2f scale, float animationSpeed, int frameHeight, int frameWidth, vector<int> run = {}, vector<int> jump = {}, vector<int> idle = {});
     void draw(RenderWindow &window, float deltaTime);
+    CollisionBox& getCollisionBox();
+    void setJumpVelocity(float jumpVelocity);
+    void setGravity(float gravity);
 private:
     Texture playerTexture;
     Sprite playerSprite;
@@ -41,8 +44,11 @@ private:
     int waitRow;
     int waitFrames;
     Vector2f scale;
+    //physics
     Vector2f pos;
     bool isJumping = false;
+    float jumpVelocity = -600.0f;
+    float gravity = 980.0f;
     //func
     void drawRunning(RenderWindow& window, float deltaTime, int row, int numFrames);
     void drawJumping(RenderWindow& window, float deltaTime, int row, int numFrames);

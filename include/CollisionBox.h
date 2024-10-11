@@ -19,6 +19,7 @@ public:
     bool doesIntersect(const CollisionBox& other) const;
     void debugDraw(RenderWindow& window) const;
     void setSize(const Vector2f& size);
+    void trimEdges(float left = 0.0f, float right = 0.0f, float top = 0.0f, float bottom = 0.0f);
 private:
     Vector2f size;
     RectangleShape box;

@@ -1,8 +1,8 @@
 //
 // Created by Adnan on 10/9/2024.
 //
-#include "Tile.h"
-#include "Platform.h"
+#include "../include/Tile.h"
+#include "../include/Platform.h"
 
 Platform::Platform(int tileCt, const string &platformType, Vector2f pos, RenderWindow& window, Vector2f scale)
     : platformCollisionBox(Vector2f(tileCt * 24 * scale.x, 24 * scale.y), pos)  {

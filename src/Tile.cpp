@@ -2,7 +2,7 @@
 // Created by Adnan on 10/9/2024.
 //
 
-#include "Tile.h"
+#include "../include/Tile.h"
 #include <map>
 #include <iostream>
 Texture Tile::tileTexture;

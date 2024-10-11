@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include "Background.h"
-#include "Platform.h"
-#include "Player.h"
+#include "../include//Background.h"
+#include "../include/Platform.h"
+#include "../include/Player.h"
 using namespace sf;
 int main() {
     Clock clock;
@@ -17,6 +17,8 @@ int main() {
     vector<int> run = {2,8};
     vector<int> jump = {3, 8};
     Player player("../assets/character/char_blue.png", Vector2f(300, 300), Vector2f(3.0f, 3.0f), 0.1f, 56,56, run, jump, idle);
+    player.getCollisionBox().trimEdges(50, 50, 75);
+    player.getCollisionBox().move(Vector2f(50,75));
     while (window.isOpen()) {
         Event event;
         float deltaTime = clock.restart().asSeconds();

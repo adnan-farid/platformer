@@ -20,15 +20,15 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(SFML)
 
 # Add the executable target for your game
-add_executable(PlatformerGameDev main.cpp Background.cpp
-        Platform.cpp
-        Platform.h
-        Tile.cpp
-        Tile.h
-        Player.cpp
-        Player.h
-        CollisionBox.cpp
-        CollisionBox.h)
+add_executable(PlatformerGameDev src/main.cpp src/Background.cpp
+        src/Platform.cpp
+        include/Platform.h
+        src/Tile.cpp
+        include/Tile.h
+        src/Player.cpp
+        include/Player.h
+        src/CollisionBox.cpp
+        include/CollisionBox.h)
 
 # Include SFML's include directories explicitly for CLion's code analysis
 target_include_directories(PlatformerGameDev PRIVATE ${SFML_SOURCE_DIR}/include)
